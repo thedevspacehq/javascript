@@ -2,20 +2,25 @@ const postController = {
   // The create action
   create: async function (req, res) {
     const { title, content } = req.body;
-    console.log(
-      "Creating a new post with title:",
-      title,
-      "and content:",
-      content
-    );
+    try {
+      console.log(
+        "Creating a new post with title:",
+        title,
+        "and content:",
+        content
+      );
 
-    res.json({ message: "Post created." });
+      res.status(201).json({ message: "Post created." });
+    } catch (e) {
+      console.log("Something went wrong.");
+      res.status(500).json({ message: "Something went wrong." });
+    }
   },
 
-  // The read action
-  read: async function (req, res) {
+  // The retrieve action
+  retrieve: async function (req, res) {
     console.log(`Retrieving post with ID: ${req.params.id}`);
-    res.json({
+    res.status(200).json({
       post: {
         id: req.params.id,
         title: "Sample Post",
@@ -30,19 +35,19 @@ const postController = {
     console.log("Updating post with ID:", req.params.id);
     console.log("New title:", title, "New content:", content);
 
-    res.json({ message: "Post updated." });
+    res.status(200).json({ message: "Post updated." });
   },
 
   // The delete action
   delete: async function (req, res) {
     console.log(`Deleting post with ID: ${req.params.id}`);
-    res.json({ message: "Post deleted." });
+    res.status(200).json({ message: "Post deleted." });
   },
 
   // List all articles
   list: async function (req, res) {
     console.log("Retrieving a list of posts from the database");
-    res.json({
+    res.status(200).json({
       posts: [
         {
           id: 1,
