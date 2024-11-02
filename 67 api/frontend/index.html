@@ -11,11 +11,10 @@
 
 <body>
     <div class="border" id="article"></div>
-    <div class="borders"></div>
 
     <script>
         async function fetchPost() {
-            const response = await fetch('http://localhost:300/post/read/1');
+            const response = await fetch('http://localhost:3001/posts/1');
 
             if (!response.ok) throw new Error("Network response was not ok");
 
